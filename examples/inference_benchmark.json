@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "checkpoints": {
+    "my-policy": "runs/my-training/latest.pt"
+  },
+  "device": "cuda:0",
+  "seed": 2026,
+  "iterations": 1000,
+  "repetitions": 3,
+  "logging": {
+    "out_dir": "runs/inference-benchmark",
+    "wandb": {
+      "enabled": true,
+      "entity": "yixiao_wang",
+      "project": "robopolicy-pilot",
+      "name": "compiled-inference"
+    }
+  }
+}

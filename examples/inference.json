@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "compile": "auto",
+  "mode": "max-autotune",
+  "precision": "fp32"
+}

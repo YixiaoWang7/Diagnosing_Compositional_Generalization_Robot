@@ -1,0 +1,110 @@
+[
+  {
+    "run_dir": "/mnt/ssd/yixiao/cg/l4/ckpt/cg_l5_diag_B4_transformer_cross_masknone_L8_seed11",
+    "checkpoint": "/mnt/ssd/yixiao/cg/l4/ckpt/cg_l5_diag_B4_transformer_cross_masknone_L8_seed11/checkpoints/ckpt_final.pt",
+    "trained_task_count": 4,
+    "unseen_task_count": 60,
+    "trained_tasks": {
+      "num_samples": 500,
+      "flow_matching_loss": 0.006478857342153787,
+      "action_mse_normalized": 0.0021158142713829874,
+      "action_mse_raw": 0.008423259970732034,
+      "elapsed_seconds": 6.797580230049789
+    },
+    "unseen_tasks": {
+      "num_samples": 500,
+      "flow_matching_loss": 0.034208385087549684,
+      "action_mse_normalized": 0.006344314222224057,
+      "action_mse_raw": 0.02505837120115757,
+      "elapsed_seconds": 7.0232890150509775
+    },
+    "rollout_success": {
+      "id_success_rate_percent": 77.5,
+      "ood_success_rate_percent": 0.8333333333333334,
+      "id_episodes": 40,
+      "ood_episodes": 600,
+      "summary_path": "/mnt/ssd/yixiao/cg/l4/eval/cg_l5_diag_B4_transformer_cross_masknone_L8_seed11/eval_20260511-230918/eval_summary.json"
+    }
+  },
+  {
+    "run_dir": "/mnt/ssd/yixiao/cg/l4/ckpt/cg_l5_oa_B8_transformer_cross_masknone_L8_seed22",
+    "checkpoint": "/mnt/ssd/yixiao/cg/l4/ckpt/cg_l5_oa_B8_transformer_cross_masknone_L8_seed22/checkpoints/ckpt_final.pt",
+    "trained_task_count": 8,
+    "unseen_task_count": 56,
+    "trained_tasks": {
+      "num_samples": 500,
+      "flow_matching_loss": 0.00663238549605012,
+      "action_mse_normalized": 0.0017045739630702883,
+      "action_mse_raw": 0.006756061851046979,
+      "elapsed_seconds": 7.280109712155536
+    },
+    "unseen_tasks": {
+      "num_samples": 500,
+      "flow_matching_loss": 0.01548093082383275,
+      "action_mse_normalized": 0.004336924944072962,
+      "action_mse_raw": 0.017184212757274508,
+      "elapsed_seconds": 7.079919548938051
+    },
+    "rollout_success": {
+      "id_success_rate_percent": 93.75,
+      "ood_success_rate_percent": 23.92857142857143,
+      "id_episodes": 80,
+      "ood_episodes": 560,
+      "summary_path": "/mnt/ssd/yixiao/cg/l4/eval/cg_l5_oa_B8_transformer_cross_masknone_L8_seed22/eval_20260507-154056/eval_summary.json"
+    }
+  },
+  {
+    "run_dir": "/mnt/ssd/yixiao/cg/l4/ckpt/cg_l5_logopt_B12_transformer_cross_masknone_L8_seed22",
+    "checkpoint": "/mnt/ssd/yixiao/cg/l4/ckpt/cg_l5_logopt_B12_transformer_cross_masknone_L8_seed22/checkpoints/ckpt_final.pt",
+    "trained_task_count": 12,
+    "unseen_task_count": 52,
+    "trained_tasks": {
+      "num_samples": 500,
+      "flow_matching_loss": 0.006217494490556419,
+      "action_mse_normalized": 0.0020514997479040174,
+      "action_mse_raw": 0.008140341565012931,
+      "elapsed_seconds": 7.5482536680065095
+    },
+    "unseen_tasks": {
+      "num_samples": 500,
+      "flow_matching_loss": 0.008122554211877287,
+      "action_mse_normalized": 0.0034983590012416244,
+      "action_mse_raw": 0.013913717167451978,
+      "elapsed_seconds": 7.048894793028012
+    },
+    "rollout_success": {
+      "id_success_rate_percent": 84.16666666666667,
+      "ood_success_rate_percent": 83.65384615384616,
+      "id_episodes": 120,
+      "ood_episodes": 520,
+      "summary_path": "/mnt/ssd/yixiao/cg/l4/eval/cg_l5_logopt_B12_transformer_cross_masknone_L8_seed22/eval_20260515-014635/eval_summary.json"
+    }
+  },
+  {
+    "run_dir": "/mnt/ssd/yixiao/cg/l4/ckpt/cg_l5_random_coverage_s0_B16_transformer_cross_masknone_L8_seed22",
+    "checkpoint": "/mnt/ssd/yixiao/cg/l4/ckpt/cg_l5_random_coverage_s0_B16_transformer_cross_masknone_L8_seed22/checkpoints/ckpt_final.pt",
+    "trained_task_count": 16,
+    "unseen_task_count": 48,
+    "trained_tasks": {
+      "num_samples": 500,
+      "flow_matching_loss": 0.006670975824818015,
+      "action_mse_normalized": 0.0024089908867608754,
+      "action_mse_raw": 0.009526065015234054,
+      "elapsed_seconds": 7.38183116982691
+    },
+    "unseen_tasks": {
+      "num_samples": 500,
+      "flow_matching_loss": 0.007563859759829939,
+      "action_mse_normalized": 0.003207245608791709,
+      "action_mse_raw": 0.01265545105561614,
+      "elapsed_seconds": 6.791087908903137
+    },
+    "rollout_success": {
+      "id_success_rate_percent": 86.25,
+      "ood_success_rate_percent": 82.29166666666666,
+      "id_episodes": 160,
+      "ood_episodes": 480,
+      "summary_path": "/mnt/ssd/yixiao/cg/l4/eval/cg_l5_random_coverage_s0_B16_transformer_cross_masknone_L8_seed22/eval_20260508-174341/eval_summary.json"
+    }
+  }
+]

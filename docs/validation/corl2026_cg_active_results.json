@@ -1,0 +1,596 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-29",
+  "implementation_commit": "8c6ba8114155f3ec4243f4e3a0518aa23144015b",
+  "simulator_revision": "c7e06a0784853d74db57ebf78d7a66fa40c2df99",
+  "checks": {
+    "core_tests_passed": 275,
+    "application_tests_passed": 286,
+    "application_tests_skipped": 0,
+    "core_mypy_files": 51,
+    "application_mypy_files": 32,
+    "ruff_check": "passed",
+    "ruff_format": "passed",
+    "core_build": "passed",
+    "application_build": "passed"
+  },
+  "runs": [
+    {
+      "name": "pilot_l4_2s_active_imf_orthogonal_b2e1cd134244_seed11",
+      "artifact_directory": "runs/corl2026_cg_validation_20260929/pilots/pilot_l4_2s_active_imf_orthogonal_b2e1cd134244_seed11",
+      "family": "l4_2s",
+      "instruction": "infer_cont0",
+      "conditioning": "active_v1",
+      "active_profile": {
+        "name": "l4_infer_cont0_v1",
+        "family": "l4_2s",
+        "instruction": "infer_cont0",
+        "grasp_enter_distance": 0.04,
+        "grasp_exit_distance": 0.05,
+        "grasp_min_separation": 0.01,
+        "grasp_enter_separation": 0.055,
+        "grasp_exit_separation": 0.065,
+        "debounce_observations": 2,
+        "bin_half_width": 0.03,
+        "flat_half_height": 0.06,
+        "mug_radius": 0.0325,
+        "mug_half_height": 0.04,
+        "plate_radius": 0.027,
+        "path": "cg/active_instruction/l4_infer_cont0_v1",
+        "vocabulary_size": 12,
+        "encoding": "phase * 4 + factor",
+        "coordinates": "world",
+        "entity_order": "cross,cube,cylinder,milk,bin,mug,plate,mug_no_handle",
+        "state_layout": "eef_xyz,eef_quat_xyzw,finger_qpos_0,finger_qpos_1",
+        "release": "not_grasped",
+        "initialization": "immediate"
+      },
+      "active_profile_digest": "c428f79a6952919958f05cbce6b2f9e12b6f2add67d6256f3d623cddc6cc015e",
+      "training_design": "orthogonal",
+      "evaluation_design": "full",
+      "seed": 11,
+      "training": {
+        "status": "complete",
+        "started": 1790699669.5448494,
+        "intentional_resume_at": 500,
+        "target_updates": 1000,
+        "completed_updates": 1000,
+        "skipped_updates": 0,
+        "elapsed_seconds": 398.983984708786
+      },
+      "checkpoint_audit": {
+        "name": "pilot_l4_2s_active_imf_orthogonal_b2e1cd134244_seed11",
+        "checkpoint_step": 1000,
+        "skipped_updates": 0,
+        "changed_model_tensors_from_step250": 288,
+        "model_tensor_count": 511,
+        "nonfinite_model_tensors": [],
+        "optimizer_step_min": 1000,
+        "optimizer_step_max": 1000,
+        "dataset_fingerprint": "6982e83389f07ad1f92b22d2f4f3a39b57afb9f3813a7d07975d5d481e56d727",
+        "selected_demos": 256,
+        "selected_tasks": 48
+      },
+      "labels": {
+        "dataset_root": "/mnt/ssd/yixiao/cg/l4/prepared/cg_l4_infer_cont0_active_v1",
+        "profile": "l4_infer_cont0_v1",
+        "profile_digest": "c428f79a6952919958f05cbce6b2f9e12b6f2add67d6256f3d623cddc6cc015e",
+        "selected_demos": 256,
+        "selected_tasks": 48,
+        "selected_identity_sha256": "224ed41bca85395609d854e3b8eb2aedf75d866d9c27c10fdf2b07701ebfc2e9",
+        "total_observations": 101948,
+        "phase_observation_counts": [
+          37659,
+          25986,
+          38303
+        ],
+        "phase_sequence_histogram": {
+          "0,1,0,1,2": 2,
+          "0,1,2": 249,
+          "0,1,2,1,2": 5
+        },
+        "missing_phase_episodes": [],
+        "recomputed_label_mismatches": []
+      },
+      "coverage": {
+        "concrete_train_count": 48,
+        "visible_train_count": 16,
+        "visible_universe_count": 48,
+        "factor_counts": {
+          "object0": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "object1": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "container1": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "pairwise": {
+          "covered": 44,
+          "total": 44,
+          "fraction": 1.0,
+          "by_factors": {
+            "object0|object1": {
+              "covered": 12,
+              "total": 12,
+              "fraction": 1.0
+            },
+            "object0|container1": {
+              "covered": 16,
+              "total": 16,
+              "fraction": 1.0
+            },
+            "object1|container1": {
+              "covered": 16,
+              "total": 16,
+              "fraction": 1.0
+            }
+          }
+        },
+        "threewise": {
+          "covered": 16,
+          "total": 48,
+          "fraction": 0.3333333333333333,
+          "by_factors": {
+            "object0|object1|container1": {
+              "covered": 16,
+              "total": 48,
+              "fraction": 0.3333333333333333
+            }
+          }
+        },
+        "ood_with_unseen_pairs": 0
+      },
+      "rollout": {
+        "aggregated": {
+          "n_episodes": 48,
+          "n_success": 0,
+          "pc_success": 0.0,
+          "pc_stage0_success": 0.0,
+          "pc_stage1_success": 0.0,
+          "pc_same_container_violation": 0.0,
+          "mean_return": 0.0,
+          "mean_length": 400.0,
+          "failures": {
+            "stage0_incomplete": 48
+          }
+        },
+        "splits": {
+          "id": {
+            "n_episodes": 16,
+            "n_success": 0,
+            "pc_success": 0.0,
+            "pc_stage0_success": 0.0,
+            "pc_stage1_success": 0.0,
+            "pc_same_container_violation": 0.0,
+            "mean_return": 0.0,
+            "mean_length": 400.0,
+            "failures": {
+              "stage0_incomplete": 16
+            }
+          },
+          "ood": {
+            "n_episodes": 32,
+            "n_success": 0,
+            "pc_success": 0.0,
+            "pc_stage0_success": 0.0,
+            "pc_stage1_success": 0.0,
+            "pc_same_container_violation": 0.0,
+            "mean_return": 0.0,
+            "mean_length": 400.0,
+            "failures": {
+              "stage0_incomplete": 32
+            }
+          }
+        },
+        "episodes_visiting_phase1": 0,
+        "episodes_visiting_phase2": 0,
+        "instruction_transition_count": 0,
+        "checkpoint_step": 1000,
+        "trials_per_visible_task": 1,
+        "horizon": 400
+      },
+      "offline_losses": {
+        "trained_tasks": {
+          "status": "complete",
+          "num_samples": 500,
+          "requested_task_count": 48,
+          "available_task_count": 48,
+          "missing_task_slugs": [],
+          "objective_loss": 0.997659581899643,
+          "action_mse_normalized": 0.11077247187495232,
+          "action_mse_raw": 0.11077247187495232,
+          "elapsed_seconds": 3.6741320844739676
+        },
+        "unseen_tasks": {
+          "status": "complete",
+          "num_samples": 500,
+          "requested_task_count": 96,
+          "available_task_count": 96,
+          "missing_task_slugs": [],
+          "objective_loss": 0.9975110828876496,
+          "action_mse_normalized": 0.10717060416936874,
+          "action_mse_raw": 0.10717060416936874,
+          "elapsed_seconds": 5.603969612158835
+        }
+      },
+      "offline_sampling": {
+        "trained_tasks": {
+          "available_concrete_task_count": 48,
+          "available_visible_composition_count": 16,
+          "sampled_concrete_task_count": 9,
+          "sampled_visible_composition_count": 8,
+          "sampled_windows": 500,
+          "sampled_windows_by_concrete_task": {
+            "cross_into_bin__cylinder_into_mug": 51,
+            "cube_into_bin__cylinder_into_mug_no_handle": 52,
+            "cube_into_mug__cylinder_into_bin": 50,
+            "cube_into_mug_no_handle__cross_into_plate": 109,
+            "cube_into_mug_no_handle__cylinder_into_bin": 45,
+            "cylinder_into_mug_no_handle__cube_into_plate": 44,
+            "cylinder_into_plate__milk_into_mug_no_handle": 49,
+            "milk_into_mug__cylinder_into_plate": 56,
+            "milk_into_mug_no_handle__cross_into_bin": 44
+          }
+        },
+        "unseen_tasks": {
+          "available_concrete_task_count": 96,
+          "available_visible_composition_count": 32,
+          "sampled_concrete_task_count": 3,
+          "sampled_visible_composition_count": 3,
+          "sampled_windows": 500,
+          "sampled_windows_by_concrete_task": {
+            "cross_into_bin__milk_into_mug": 237,
+            "cross_into_bin__milk_into_mug_no_handle": 26,
+            "cube_into_plate__milk_into_mug_no_handle": 237
+          }
+        }
+      }
+    },
+    {
+      "name": "pilot_l5_active_imf_diag_B4_69730724c5f9_seed11",
+      "artifact_directory": "runs/corl2026_cg_validation_20260929/pilots/pilot_l5_active_imf_diag_B4_69730724c5f9_seed11",
+      "family": "l5",
+      "instruction": "full",
+      "conditioning": "active_v1",
+      "active_profile": {
+        "name": "l5_v1",
+        "family": "l5",
+        "instruction": "full",
+        "grasp_enter_distance": 0.04,
+        "grasp_exit_distance": 0.05,
+        "grasp_min_separation": 0.01,
+        "grasp_enter_separation": 0.055,
+        "grasp_exit_separation": 0.065,
+        "debounce_observations": 2,
+        "bin_half_width": 0.03,
+        "flat_half_height": 0.06,
+        "mug_radius": 0.0325,
+        "mug_half_height": 0.04,
+        "plate_radius": 0.027,
+        "path": "cg/active_instruction/l5_v1",
+        "vocabulary_size": 12,
+        "encoding": "phase * 4 + factor",
+        "coordinates": "world",
+        "entity_order": "cross,cube,cylinder,milk,bin,mug,plate,mug_no_handle",
+        "state_layout": "eef_xyz,eef_quat_xyzw,finger_qpos_0,finger_qpos_1",
+        "release": "not_grasped",
+        "initialization": "immediate"
+      },
+      "active_profile_digest": "d3f31785b2425a30b9c611c2caaba9255762e93f79135ab4d26c5f6443c2621e",
+      "training_design": "diag_B4",
+      "evaluation_design": "full",
+      "seed": 11,
+      "training": {
+        "status": "complete",
+        "started": 1790699664.0326288,
+        "intentional_resume_at": 500,
+        "target_updates": 1000,
+        "completed_updates": 1000,
+        "skipped_updates": 0,
+        "elapsed_seconds": 396.60496401786804
+      },
+      "checkpoint_audit": {
+        "name": "pilot_l5_active_imf_diag_B4_69730724c5f9_seed11",
+        "checkpoint_step": 1000,
+        "skipped_updates": 0,
+        "changed_model_tensors_from_step250": 288,
+        "model_tensor_count": 511,
+        "nonfinite_model_tensors": [],
+        "optimizer_step_min": 1000,
+        "optimizer_step_max": 1000,
+        "dataset_fingerprint": "18df4558deed7a1f4a508b4bdecda6ee6416b74507267523c2b3f1dc20097737",
+        "selected_demos": 256,
+        "selected_tasks": 4
+      },
+      "labels": {
+        "dataset_root": "/mnt/ssd/yixiao/cg/l4/prepared/cg_l5_active_v1",
+        "profile": "l5_v1",
+        "profile_digest": "d3f31785b2425a30b9c611c2caaba9255762e93f79135ab4d26c5f6443c2621e",
+        "selected_demos": 256,
+        "selected_tasks": 4,
+        "selected_identity_sha256": "787d789c7be4a75b71f3b273fb6e11a581c46c4d805a9492522c28db4cdb35d5",
+        "total_observations": 80594,
+        "phase_observation_counts": [
+          13399,
+          25612,
+          41583
+        ],
+        "phase_sequence_histogram": {
+          "0,1,0,2": 4,
+          "0,1,2": 252
+        },
+        "missing_phase_episodes": [],
+        "recomputed_label_mismatches": []
+      },
+      "coverage": {
+        "concrete_train_count": 4,
+        "visible_train_count": 4,
+        "visible_universe_count": 64,
+        "factor_counts": {
+          "object0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "container0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "button": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "pairwise": {
+          "covered": 12,
+          "total": 48,
+          "fraction": 0.25,
+          "by_factors": {
+            "object0|container0": {
+              "covered": 4,
+              "total": 16,
+              "fraction": 0.25
+            },
+            "object0|button": {
+              "covered": 4,
+              "total": 16,
+              "fraction": 0.25
+            },
+            "container0|button": {
+              "covered": 4,
+              "total": 16,
+              "fraction": 0.25
+            }
+          }
+        },
+        "threewise": {
+          "covered": 4,
+          "total": 64,
+          "fraction": 0.0625,
+          "by_factors": {
+            "object0|container0|button": {
+              "covered": 4,
+              "total": 64,
+              "fraction": 0.0625
+            }
+          }
+        },
+        "ood_with_unseen_pairs": 60
+      },
+      "rollout": {
+        "aggregated": {
+          "n_episodes": 64,
+          "n_success": 0,
+          "pc_success": 0.0,
+          "pc_stage0_success": 0.0,
+          "pc_stage1_success": 0.0,
+          "pc_same_container_violation": 0.0,
+          "mean_return": 0.0,
+          "mean_length": 400.0,
+          "failures": {
+            "stage0_incomplete": 64
+          }
+        },
+        "splits": {
+          "id": {
+            "n_episodes": 4,
+            "n_success": 0,
+            "pc_success": 0.0,
+            "pc_stage0_success": 0.0,
+            "pc_stage1_success": 0.0,
+            "pc_same_container_violation": 0.0,
+            "mean_return": 0.0,
+            "mean_length": 400.0,
+            "failures": {
+              "stage0_incomplete": 4
+            }
+          },
+          "ood": {
+            "n_episodes": 60,
+            "n_success": 0,
+            "pc_success": 0.0,
+            "pc_stage0_success": 0.0,
+            "pc_stage1_success": 0.0,
+            "pc_same_container_violation": 0.0,
+            "mean_return": 0.0,
+            "mean_length": 400.0,
+            "failures": {
+              "stage0_incomplete": 60
+            }
+          }
+        },
+        "episodes_visiting_phase1": 2,
+        "episodes_visiting_phase2": 0,
+        "instruction_transition_count": 4,
+        "checkpoint_step": 1000,
+        "trials_per_visible_task": 1,
+        "horizon": 400
+      },
+      "offline_losses": {
+        "trained_tasks": {
+          "status": "complete",
+          "num_samples": 500,
+          "requested_task_count": 4,
+          "available_task_count": 4,
+          "missing_task_slugs": [],
+          "objective_loss": 0.9912797212600708,
+          "action_mse_normalized": 0.04865794703364372,
+          "action_mse_raw": 0.04742648489773273,
+          "elapsed_seconds": 3.7348002269864082
+        },
+        "unseen_tasks": {
+          "status": "complete",
+          "num_samples": 500,
+          "requested_task_count": 60,
+          "available_task_count": 59,
+          "missing_task_slugs": [
+            "milk_into_mug_no_handle_press_blue"
+          ],
+          "objective_loss": 0.9899575233459472,
+          "action_mse_normalized": 0.04320149812847376,
+          "action_mse_raw": 0.042055816203355786,
+          "elapsed_seconds": 5.378140074200928
+        }
+      },
+      "offline_sampling": {
+        "trained_tasks": {
+          "available_concrete_task_count": 4,
+          "available_visible_composition_count": 4,
+          "sampled_concrete_task_count": 4,
+          "sampled_visible_composition_count": 4,
+          "sampled_windows": 500,
+          "sampled_windows_by_concrete_task": {
+            "cross_into_bin_press_red": 187,
+            "cube_into_mug_press_green": 60,
+            "cylinder_into_plate_press_blue": 78,
+            "milk_into_mug_no_handle_press_yellow": 175
+          }
+        },
+        "unseen_tasks": {
+          "available_concrete_task_count": 59,
+          "available_visible_composition_count": 59,
+          "sampled_concrete_task_count": 2,
+          "sampled_visible_composition_count": 2,
+          "sampled_windows": 500,
+          "sampled_windows_by_concrete_task": {
+            "cylinder_into_bin_press_blue": 157,
+            "cylinder_into_bin_press_red": 343
+          }
+        }
+      }
+    }
+  ],
+  "wandb_verification": {
+    "runs": [
+      {
+        "role": "l5_train",
+        "id": "cc758d1a",
+        "entity": "yixiao_wang",
+        "project": "corl2026_cg",
+        "url": "https://wandb.ai/yixiao_wang/corl2026_cg/runs/cc758d1a",
+        "state": "finished",
+        "step_metrics": {
+          "_step": 45,
+          "resume/checkpoint_step": 500,
+          "train/step": 1000
+        }
+      },
+      {
+        "role": "l4_train",
+        "id": "7935d320",
+        "entity": "yixiao_wang",
+        "project": "corl2026_cg",
+        "url": "https://wandb.ai/yixiao_wang/corl2026_cg/runs/7935d320",
+        "state": "finished",
+        "step_metrics": {
+          "_step": 45,
+          "resume/checkpoint_step": 500,
+          "train/step": 1000
+        }
+      },
+      {
+        "role": "l5_loss",
+        "id": "5e52a0ec",
+        "entity": "yixiao_wang",
+        "project": "corl2026_cg",
+        "url": "https://wandb.ai/yixiao_wang/corl2026_cg/runs/5e52a0ec",
+        "state": "finished",
+        "step_metrics": {
+          "_step": 0,
+          "evaluation/checkpoint_step": 1000
+        }
+      },
+      {
+        "role": "l4_loss",
+        "id": "4cb4596d",
+        "entity": "yixiao_wang",
+        "project": "corl2026_cg",
+        "url": "https://wandb.ai/yixiao_wang/corl2026_cg/runs/4cb4596d",
+        "state": "finished",
+        "step_metrics": {
+          "_step": 0,
+          "evaluation/checkpoint_step": 1000
+        }
+      },
+      {
+        "role": "l5_rollout",
+        "id": "abd6e1cd",
+        "entity": "yixiao_wang",
+        "project": "corl2026_cg",
+        "url": "https://wandb.ai/yixiao_wang/corl2026_cg/runs/abd6e1cd",
+        "state": "finished",
+        "step_metrics": {
+          "_step": 0,
+          "evaluation/checkpoint_step": 1000
+        }
+      },
+      {
+        "role": "l4_rollout",
+        "id": "a8df65aa",
+        "entity": "yixiao_wang",
+        "project": "corl2026_cg",
+        "url": "https://wandb.ai/yixiao_wang/corl2026_cg/runs/a8df65aa",
+        "state": "finished",
+        "step_metrics": {
+          "_step": 0,
+          "evaluation/checkpoint_step": 1000
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Both pilots had zero task successes and zero first-stage completions; successful integration does not establish policy quality.",
+    "One training seed, 1000 updates, 256 demonstrations, one rollout per visible task; no convergence or comparative claim.",
+    "Active instructions come from physical simulator state; the image policy also receives robot state and the active categorical token.",
+    "The L5 offline unseen sampling pool contains 59 of 60 requested compositions; milk_into_mug_no_handle_press_blue is absent. Metrics use 500 sampled windows, not per-task averages or guaranteed coverage of every available composition. Simulator evaluation covers all 64 compositions.",
+    "L4 source numeric timestamps assume 50 Hz while video timestamps use 20 FPS. Collector and training use step-aligned observations; inspection now uses the same frame indices.",
+    "The current L4 collector and migrated evaluator have different placement sampling bounds; exact source collection revision is unavailable, so distribution parity is not established.",
+    "L4's 48 visible rollout queries use one trial each and do not cover all 144 concrete hidden-container initializations.",
+    "The 500-window offline metrics sample L5 trained/unseen concrete task counts 4/2 and L4 trained/unseen counts 9/3; they are not full-composition benchmarks."
+  ],
+  "offline_sampling_audit": {
+    "epoch": 0,
+    "method": "Reconstruct the exact first500 SampleRefs using native read_manifest -> select_entries(train) -> plan_windows -> plan_blocks; no decoding, inference, resampling, or metric rerun. Configuration and split populations come from each saved run.json and losses.json. Matches evaluate_losses single-worker LoaderConfig defaults.",
+    "requested_windows": 500,
+    "sampling_seed": 0,
+    "worker_count": 1,
+    "worker_id": 0
+  }
+}

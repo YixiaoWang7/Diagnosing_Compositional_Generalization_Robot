@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "wheel": "/tmp/robopolicy-dist/robopolicy-0.2.0a1-py3-none-any.whl",
+  "mode": "core",
+  "python": "3.10.19 (main, Dec 17 2025, 21:07:02) [Clang 21.1.4 ]",
+  "versions": {
+    "robopolicy": "0.2.0a1",
+    "torch": "2.9.1+cpu",
+    "numpy": "2.2.6"
+  },
+  "executable": "/tmp/robopolicy-core310-minimal/bin/python"
+}

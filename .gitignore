@@ -1,0 +1,50 @@
+### Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+### Virtual environments
+.venv/
+venv/
+ENV/
+
+### Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+### Packaging / builds
+build/
+dist/
+*.egg-info/
+
+### Jupyter
+.ipynb_checkpoints/
+
+### OS / editor noise
+.DS_Store
+.idea/
+.vscode/
+
+### Experiment outputs
+wandb/
+results/
+**/results/
+runs/
+*.pt
+*.pth
+*.ckpt
+*.log
+
+repos/
+
+# Private reference images: local only, never publish.
+/tmp_feature/
+
+
+# Generated example datasets
+data/
+!projects/corl2026_cg/src/corl2026_cg/data/
+!projects/corl2026_cg/src/corl2026_cg/data/*.py

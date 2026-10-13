@@ -1,0 +1,8 @@
+prune src/policies
+prune projects
+prune configs
+prune tests
+include tests/__init__.py
+recursive-include tests/core *.py
+recursive-include src/robopolicy *.py py.typed
+global-exclude __pycache__ *.py[cod]

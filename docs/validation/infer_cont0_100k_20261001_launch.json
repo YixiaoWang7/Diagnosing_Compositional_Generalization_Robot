@@ -1,0 +1,36 @@
+{
+  "created_at": "2026-10-01T01:25:12.388154+00:00",
+  "root": "/home/yixiao/Documents/code/robopolicy/runs/infer_cont0_100k_20261001_012512",
+  "config": "/home/yixiao/Documents/code/robopolicy/runs/infer_cont0_100k_20261001_012512/infer_cont0_full_100k.json",
+  "job": "/home/yixiao/Documents/code/robopolicy/runs/infer_cont0_100k_20261001_012512/jobs/infer_cont0_full_100k_full_2506943c897e_seed11/experiment.json",
+  "source_job": "/home/yixiao/Documents/code/robopolicy/runs/full_training_20260929/jobs/infer_cont0_full_50k_full_cfbcd49b80c5_seed11/experiment.json",
+  "max_updates": 100000,
+  "initialization": "fresh",
+  "credential_verified": true,
+  "data_model_features_evaluation_equal_to_50k": true,
+  "pipeline": {
+    "pid": 3667519,
+    "job": "/home/yixiao/Documents/code/robopolicy/runs/infer_cont0_100k_20261001_012512/jobs/infer_cont0_full_100k_full_2506943c897e_seed11/experiment.json",
+    "log": "/home/yixiao/Documents/code/robopolicy/runs/infer_cont0_100k_20261001_012512/pipeline.log",
+    "started_at": "2026-10-01T01:25:35.730470+00:00",
+    "automatic_evaluation": true
+  },
+  "wandb": {
+    "url": "https://wandb.ai/yixiao_wang/corl2026_cg/runs/2be8eceb",
+    "state": "running",
+    "id": "2be8eceb",
+    "entity": "yixiao_wang",
+    "project": "corl2026_cg"
+  },
+  "startup_training_metric": {
+    "event": "train",
+    "train/step": 300,
+    "train/loss": 0.32938194274902344,
+    "train/lr": 3.01e-05,
+    "resume/segment": "f00d0287b4394cb1b4d3cb57e6484db7"
+  },
+  "evaluation_episodes": 1200,
+  "training_demonstrations": 3600,
+  "seed": 11,
+  "gpu": 0
+}

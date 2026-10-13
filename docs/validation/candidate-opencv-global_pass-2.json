@@ -1,0 +1,498 @@
+{
+  "backend": "opencv/global_pass",
+  "batch": {
+    "host_dtype": "torch.uint8",
+    "packed_image_shape": [
+      16,
+      1,
+      2,
+      3,
+      256,
+      256
+    ],
+    "raw_image_mib": 6.0
+  },
+  "checksum": 1159089,
+  "config": {
+    "active_window_shards": 2,
+    "batch_size": 16,
+    "cameras": [
+      "agentview",
+      "robot0_eye_in_hand"
+    ],
+    "decoder_cache_max_entries": 8,
+    "frame_cache_max_entries": 0,
+    "k_passes": 1,
+    "locality_block_size": 32,
+    "max_demos": 80,
+    "max_ram_gib": null,
+    "measure_batches_requested": 0,
+    "measure_seconds_requested": 15.0,
+    "num_workers": 2,
+    "prefetch_factor": 2
+  },
+  "data_dir": "/mnt/ssd/yixiao/cg/l4/single_stage_5demo",
+  "decoder_resources": {
+    "decode_requests": 1772,
+    "live_handles": 0,
+    "peak_handles": 16
+  },
+  "gpu": {
+    "baseline_device_used_mib": 285.375,
+    "device": "cuda:1",
+    "peak_device_delta_mib": 128.0,
+    "peak_device_used_mib": 413.375,
+    "peak_torch_allocated_mib": 61.134765625,
+    "peak_torch_reserved_mib": 86.0,
+    "scope": "uint8 transfer and DINOv2 preprocessing only; model excluded"
+  },
+  "image_color_order": "RGB",
+  "ram": {
+    "baseline_parent_pss_mib": 610.185546875,
+    "baseline_parent_rss_mib": 618.984375,
+    "memory_limit_exceeded": false,
+    "peak_tree_open_files": 16,
+    "peak_tree_processes": 4,
+    "peak_tree_pss_mib": 2181.8369140625,
+    "peak_tree_rss_mib": 2734.359375,
+    "peak_tree_threads": 275,
+    "peak_tree_uss_mib": 1912.890625
+  },
+  "resource_history": [
+    {
+      "open_files": 0,
+      "processes": 1,
+      "pss_mib": 610.232421875,
+      "rss_mib": 619.03125,
+      "threads": 4,
+      "time_s": 4328316.543357764,
+      "uss_mib": 605.21875
+    }
+  ],
+  "selection": [
+    [
+      "cross_into_bin",
+      0,
+      "demo_000000"
+    ],
+    [
+      "cross_into_bin",
+      42,
+      "demo_000214"
+    ],
+    [
+      "cross_into_bin",
+      54,
+      "demo_000270"
+    ],
+    [
+      "cross_into_mug",
+      24,
+      "demo_000121"
+    ],
+    [
+      "cross_into_mug",
+      27,
+      "demo_000138"
+    ],
+    [
+      "cross_into_mug",
+      52,
+      "demo_000264"
+    ],
+    [
+      "cross_into_mug",
+      73,
+      "demo_000366"
+    ],
+    [
+      "cross_into_mug",
+      80,
+      "demo_000400"
+    ],
+    [
+      "cross_into_mug_no_handle",
+      15,
+      "demo_000079"
+    ],
+    [
+      "cross_into_mug_no_handle",
+      23,
+      "demo_000117"
+    ],
+    [
+      "cross_into_mug_no_handle",
+      25,
+      "demo_000127"
+    ],
+    [
+      "cross_into_mug_no_handle",
+      36,
+      "demo_000181"
+    ],
+    [
+      "cross_into_mug_no_handle",
+      39,
+      "demo_000197"
+    ],
+    [
+      "cross_into_mug_no_handle",
+      54,
+      "demo_000274"
+    ],
+    [
+      "cross_into_mug_no_handle",
+      99,
+      "demo_000497"
+    ],
+    [
+      "cross_into_plate",
+      2,
+      "demo_000013"
+    ],
+    [
+      "cross_into_plate",
+      60,
+      "demo_000300"
+    ],
+    [
+      "cross_into_plate",
+      85,
+      "demo_000426"
+    ],
+    [
+      "cross_into_plate",
+      98,
+      "demo_000490"
+    ],
+    [
+      "cube_into_bin",
+      3,
+      "demo_000017"
+    ],
+    [
+      "cube_into_bin",
+      4,
+      "demo_000022"
+    ],
+    [
+      "cube_into_bin",
+      12,
+      "demo_000063"
+    ],
+    [
+      "cube_into_bin",
+      24,
+      "demo_000124"
+    ],
+    [
+      "cube_into_bin",
+      59,
+      "demo_000297"
+    ],
+    [
+      "cube_into_mug",
+      5,
+      "demo_000025"
+    ],
+    [
+      "cube_into_mug",
+      5,
+      "demo_000028"
+    ],
+    [
+      "cube_into_mug",
+      21,
+      "demo_000105"
+    ],
+    [
+      "cube_into_mug",
+      81,
+      "demo_000408"
+    ],
+    [
+      "cube_into_mug",
+      99,
+      "demo_000495"
+    ],
+    [
+      "cube_into_mug_no_handle",
+      5,
+      "demo_000028"
+    ],
+    [
+      "cube_into_mug_no_handle",
+      45,
+      "demo_000229"
+    ],
+    [
+      "cube_into_mug_no_handle",
+      47,
+      "demo_000237"
+    ],
+    [
+      "cube_into_mug_no_handle",
+      86,
+      "demo_000432"
+    ],
+    [
+      "cube_into_mug_no_handle",
+      90,
+      "demo_000452"
+    ],
+    [
+      "cube_into_mug_no_handle",
+      95,
+      "demo_000475"
+    ],
+    [
+      "cube_into_plate",
+      16,
+      "demo_000084"
+    ],
+    [
+      "cube_into_plate",
+      45,
+      "demo_000228"
+    ],
+    [
+      "cube_into_plate",
+      69,
+      "demo_000346"
+    ],
+    [
+      "cube_into_plate",
+      83,
+      "demo_000415"
+    ],
+    [
+      "cube_into_plate",
+      85,
+      "demo_000429"
+    ],
+    [
+      "cylinder_into_bin",
+      5,
+      "demo_000026"
+    ],
+    [
+      "cylinder_into_bin",
+      14,
+      "demo_000074"
+    ],
+    [
+      "cylinder_into_bin",
+      15,
+      "demo_000075"
+    ],
+    [
+      "cylinder_into_bin",
+      55,
+      "demo_000278"
+    ],
+    [
+      "cylinder_into_bin",
+      66,
+      "demo_000332"
+    ],
+    [
+      "cylinder_into_mug",
+      5,
+      "demo_000027"
+    ],
+    [
+      "cylinder_into_mug",
+      10,
+      "demo_000054"
+    ],
+    [
+      "cylinder_into_mug",
+      18,
+      "demo_000093"
+    ],
+    [
+      "cylinder_into_mug",
+      44,
+      "demo_000222"
+    ],
+    [
+      "cylinder_into_mug",
+      73,
+      "demo_000367"
+    ],
+    [
+      "cylinder_into_mug_no_handle",
+      24,
+      "demo_000121"
+    ],
+    [
+      "cylinder_into_mug_no_handle",
+      37,
+      "demo_000185"
+    ],
+    [
+      "cylinder_into_mug_no_handle",
+      47,
+      "demo_000236"
+    ],
+    [
+      "cylinder_into_mug_no_handle",
+      65,
+      "demo_000328"
+    ],
+    [
+      "cylinder_into_mug_no_handle",
+      72,
+      "demo_000361"
+    ],
+    [
+      "cylinder_into_mug_no_handle",
+      95,
+      "demo_000478"
+    ],
+    [
+      "cylinder_into_plate",
+      11,
+      "demo_000056"
+    ],
+    [
+      "cylinder_into_plate",
+      15,
+      "demo_000077"
+    ],
+    [
+      "cylinder_into_plate",
+      23,
+      "demo_000118"
+    ],
+    [
+      "cylinder_into_plate",
+      36,
+      "demo_000184"
+    ],
+    [
+      "cylinder_into_plate",
+      70,
+      "demo_000354"
+    ],
+    [
+      "cylinder_into_plate",
+      89,
+      "demo_000446"
+    ],
+    [
+      "milk_into_bin",
+      0,
+      "demo_000004"
+    ],
+    [
+      "milk_into_bin",
+      5,
+      "demo_000025"
+    ],
+    [
+      "milk_into_bin",
+      72,
+      "demo_000364"
+    ],
+    [
+      "milk_into_bin",
+      81,
+      "demo_000408"
+    ],
+    [
+      "milk_into_mug",
+      50,
+      "demo_000253"
+    ],
+    [
+      "milk_into_mug",
+      58,
+      "demo_000290"
+    ],
+    [
+      "milk_into_mug",
+      67,
+      "demo_000337"
+    ],
+    [
+      "milk_into_mug",
+      73,
+      "demo_000365"
+    ],
+    [
+      "milk_into_mug",
+      87,
+      "demo_000436"
+    ],
+    [
+      "milk_into_mug",
+      98,
+      "demo_000492"
+    ],
+    [
+      "milk_into_mug_no_handle",
+      5,
+      "demo_000026"
+    ],
+    [
+      "milk_into_mug_no_handle",
+      23,
+      "demo_000116"
+    ],
+    [
+      "milk_into_mug_no_handle",
+      59,
+      "demo_000296"
+    ],
+    [
+      "milk_into_mug_no_handle",
+      93,
+      "demo_000465"
+    ],
+    [
+      "milk_into_plate",
+      61,
+      "demo_000305"
+    ],
+    [
+      "milk_into_plate",
+      70,
+      "demo_000352"
+    ],
+    [
+      "milk_into_plate",
+      80,
+      "demo_000402"
+    ],
+    [
+      "milk_into_plate",
+      86,
+      "demo_000432"
+    ]
+  ],
+  "startup": {
+    "first_batch_and_gpu_preprocess_s": 0.707806495949626,
+    "first_h2d_ms": 0.5429120063781738,
+    "first_preprocess_ms": 24.62246322631836
+  },
+  "throughput": {
+    "batch_ms_mean": 9.17239244923951,
+    "batch_ms_p50": 1.896910835057497,
+    "batch_ms_p95": 35.38896837271749,
+    "cpu_core_equivalent": 9.25289395801153,
+    "cpu_percent_of_machine": 28.915293618786034,
+    "cpu_seconds": 138.84000000000003,
+    "dataloader_wait_ms_mean": 8.542625848479505,
+    "dataloader_wait_ms_p50": 1.3566366396844387,
+    "dataloader_wait_ms_p95": 34.68124968931078,
+    "h2d_ms_mean": 0.3157601580896522,
+    "image_frames_per_s": 3459.1055027126936,
+    "measured_batches": 1622,
+    "measurement_s": 15.005035249516368,
+    "preprocess_ms_mean": 0.1996614549184992,
+    "samples": 25952,
+    "samples_per_s": 1729.5527513563468,
+    "stop_reason": "duration"
+  }
+}

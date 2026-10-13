@@ -1,0 +1,10 @@
+{
+  "robopolicy-0.2.0a1-py3-none-any.whl": {
+    "sha256": "f6df436ac2d7c286311572b38d5bafcec9905e62eebab847183fed09cd5dcaef",
+    "members": 53
+  },
+  "robopolicy-0.2.0a1.tar.gz": {
+    "sha256": "612353ee173af22fa284d6442eb01b19c1ea3e9e619cd3e17f1e993dba482d13",
+    "members": 91
+  }
+}

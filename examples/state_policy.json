@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "seed": 0,
+  "features": {"features": [
+    {"key": "state", "shape": [1], "paths": ["state"], "normalization": "standard"},
+    {"key": "actions", "shape": [1], "paths": ["actions"], "future": 3, "normalization": "standard"}
+  ]},
+  "dataset": {"root": "data/toy", "selection": {"val_fraction": 0.2}},
+  "loader": {"batch_size": 16, "num_workers": 0},
+  "policy": {
+    "state_dim": 1, "action_dim": 1, "action_steps": 4,
+    "conditioning": {"type": "learned", "num_tokens": 1},
+    "fusion": {"dim": 16, "heads": 2, "layers": 1, "ff_dim": 32},
+    "head": {"type": "transformer", "dim": 32, "heads": 2, "layers": 1, "ff_dim": 64, "time_dim": 16}
+  },
+  "training": {"device": "cpu", "max_updates": 200, "learning_rate": 0.003, "checkpoint_every": 100, "validate_every": 100},
+  "logging": {
+    "out_dir": "runs/example",
+    "wandb": {
+      "enabled": true,
+      "entity": "yixiao_wang",
+      "project": "robopolicy-example"
+    }
+  }
+}

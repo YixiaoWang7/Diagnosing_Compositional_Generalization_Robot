@@ -1,0 +1,4 @@
+# Reference training / compiled inference runtime. Select CPU or CUDA wheels explicitly.
+torch==2.9.1
+torchvision==0.24.1
+torchcodec==0.9.1

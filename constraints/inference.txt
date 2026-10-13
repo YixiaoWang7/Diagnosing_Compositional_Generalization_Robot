@@ -1,0 +1,3 @@
+# Existing simulator runtime. Do not install the TorchCodec extra in this environment.
+torch==2.7.0
+torchvision==0.22.0

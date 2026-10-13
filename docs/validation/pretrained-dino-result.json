@@ -1,0 +1,17 @@
+{
+  "model": "facebook/dinov2-small",
+  "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+  "weights_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+  "download_bytes": 88249960,
+  "pretrained_weight_parity": "exact",
+  "completed_updates": 4,
+  "checkpoint_step": 2,
+  "prediction_parity": "exact",
+  "checkpoint_reconstruction_download_calls": 0,
+  "prediction_shape": [
+    2,
+    16,
+    7
+  ],
+  "checkpoint_bytes": 90580429
+}

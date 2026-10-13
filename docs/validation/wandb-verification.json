@@ -1,0 +1,66 @@
+{
+  "verified": true,
+  "training_url": "https://wandb.ai/yixiao_wang/robopolicy-pilot/runs/3844cb75",
+  "evaluation_url": "https://wandb.ai/yixiao_wang/robopolicy-pilot/runs/d5491d85",
+  "training_state": "finished",
+  "evaluation_state": "finished",
+  "segments": [
+    "81d0ddec94e94acfb25e540e57152d4a",
+    "dd5c030c255149cea670516f035f9490"
+  ],
+  "resume_checkpoint_step": 250,
+  "max_train_step": 500,
+  "training_artifacts": [
+    {
+      "name": "robopolicy-provenance-3844cb75:v0",
+      "type": "provenance",
+      "version": "v0",
+      "aliases": [
+        "segment-81d0ddec94e94acfb25e540e57152d4a"
+      ]
+    },
+    {
+      "name": "robopolicy-checkpoint-3844cb75:v0",
+      "type": "checkpoint",
+      "version": "v0",
+      "aliases": [
+        "step-250"
+      ]
+    },
+    {
+      "name": "robopolicy-provenance-3844cb75:v1",
+      "type": "provenance",
+      "version": "v1",
+      "aliases": [
+        "latest",
+        "segment-dd5c030c255149cea670516f035f9490"
+      ]
+    },
+    {
+      "name": "robopolicy-checkpoint-3844cb75:v1",
+      "type": "checkpoint",
+      "version": "v1",
+      "aliases": [
+        "latest",
+        "step-500"
+      ]
+    }
+  ],
+  "evaluation_artifacts": [
+    {
+      "name": "robopolicy-evaluation-d5491d85:v0",
+      "type": "evaluation-result",
+      "version": "v0",
+      "aliases": [
+        "latest",
+        "step-500"
+      ]
+    }
+  ],
+  "validation": {
+    "val/loss": 1.028310671614434,
+    "val/samples": 12588.0
+  },
+  "prediction_parity": "exact",
+  "dataset_fingerprint": "73def51be2f7584ac16beac8a7b40c5b73815dcde68942b8ba4b27cd2965ff26"
+}

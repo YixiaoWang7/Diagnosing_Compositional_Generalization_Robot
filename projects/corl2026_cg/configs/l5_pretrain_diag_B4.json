@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "name": "l5_pretrain_diag_B4",
+  "family": "l5",
+  "instruction": "full",
+  "sets": ["diag_B4"],
+  "seeds": [11],
+  "run": {
+    "version": 1,
+    "seed": 11,
+    "features": {
+      "features": [
+        {
+          "key": "actions",
+          "shape": [7],
+          "history": 0,
+          "future": 15,
+          "source": "hdf5",
+          "paths": ["actions"],
+          "normalization": "minmax"
+        },
+        {
+          "key": "state",
+          "shape": [9],
+          "history": 0,
+          "future": 0,
+          "source": "hdf5",
+          "paths": ["obs/robot0_eef_pos", "obs/robot0_eef_quat", "obs/robot0_gripper_qpos"],
+          "normalization": "minmax"
+        },
+        {
+          "key": "images",
+          "shape": [3, 256, 256],
+          "history": 0,
+          "future": 0,
+          "source": "video",
+          "cameras": ["agentview", "robot0_eye_in_hand"],
+          "dtype": "uint8"
+        },
+        {
+          "key": "task_indices",
+          "shape": [3],
+          "paths": ["cg/task/object0", "cg/task/container0", "cg/task/button"],
+          "dtype": "int64"
+        }
+      ]
+    },
+    "dataset": {
+      "root": "data/corl2026_cg/l5",
+      "video": {"decoder": "opencv"},
+      "selection": {
+        "val_fraction": 0.01,
+        "split_seed": 0,
+        "subset_seed": 0,
+        "max_demos": 1800,
+        "max_demos_per_task": null,
+        "balance_demos_across_tasks": true
+      },
+      "sampling": {
+        "strategy": "window_major",
+        "k_passes": 8,
+        "window_shards": 10,
+        "block_size": 64,
+        "prefetch_block": true
+      }
+    },
+    "loader": {"batch_size": 64, "num_workers": 8, "prefetch_factor": 4},
+    "policy": {
+      "state_dim": 9,
+      "action_dim": 7,
+      "action_steps": 16,
+      "obs_steps": 1,
+      "cameras": 2,
+      "conditioning": {"type": "indexed", "vocab_sizes": [4, 4, 4]},
+      "fusion": {
+        "type": "cross",
+        "dim": 256,
+        "heads": 8,
+        "layers": 4,
+        "ff_dim": 512,
+        "dropout": 0.1,
+        "mask": "none"
+      },
+      "vision": {
+        "type": "dinov2",
+        "patch_size": 14,
+        "dim": 384,
+        "depth": 12,
+        "heads": 6,
+        "image_size": 518,
+        "freeze": true,
+        "pretrained": "facebook/dinov2-small"
+      },
+      "head": {
+        "type": "transformer",
+        "dim": 512,
+        "layers": 8,
+        "heads": 8,
+        "ff_dim": 2048,
+        "time_dim": 256,
+        "dropout": 0.1,
+        "attention_dropout": 0.0
+      },
+      "algorithm": {
+        "type": "flow_matching",
+        "path_type": "linear",
+        "scheduler_type": "uniform",
+        "solver_type": "euler",
+        "num_inference_steps": 10,
+        "guidance_scale": 1.0,
+        "velocity_clamp": null,
+        "sigma_min": 0.0001,
+        "sigma_schedule": "constant",
+        "ot_reg": 0.05,
+        "time_eps": 0.0,
+        "t_max": 0.999,
+        "logit_normal_loc": 0.0,
+        "logit_normal_scale": 1.0,
+        "dense_jump_density": 2.0,
+        "beta_alpha": 1.5,
+        "beta_beta": 1.0
+      }
+    },
+    "processing": {"crop_size": [224, 224], "random_crop": true},
+    "training": {
+      "device": "cuda:0",
+      "max_updates": 100000,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "amp": true,
+      "grad_clip_norm": 1.0,
+      "schedule": "cosine",
+      "warmup_updates": 1000,
+      "min_lr_ratio": 0.0001,
+      "log_every": 5000,
+      "validate_every": 10000,
+      "validation_batches": 10,
+      "checkpoint_every": 50000
+    },
+    "logging": {
+      "out_dir": "runs/corl2026_cg/template",
+      "wandb": {"enabled": true, "entity": "yixiao_wang", "project": "corl2026_cg"}
+    }
+  },
+  "matrix": {}
+}

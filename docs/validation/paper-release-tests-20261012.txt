@@ -1,0 +1,36 @@
+Paper release validation — 2026-10-12
+Source: corl2026_cg at bfe269a plus the release-preparation changes.
+Runtime: existing .venv, Python 3.10.19, PyTorch 2.9.1+cu128, two RTX 5080 GPUs.
+OMP_NUM_THREADS=1 and MKL_NUM_THREADS=1 for both commands.
+No scientific training or online W&B run was launched.
+
+Core command:
+PYTHONPATH=src .venv/bin/python -m pytest tests -q
+Exit status: 0
+
+........................................................................ [ 25%]
+........................................................................ [ 51%]
+........................................................................ [ 77%]
+.............................................................            [100%]
+=============================== warnings summary ===============================
+tests/core/test_inference.py::test_inductor_prediction_lifecycle[images-fp32-conv]
+  /home/yixiao/Documents/code/robopolicy/.venv/lib/python3.10/site-packages/torch/_inductor/compile_fx.py:312: UserWarning: TensorFloat32 tensor cores for float32 matrix multiplication available but not enabled. Consider setting `torch.set_float32_matmul_precision('high')` for better performance.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+277 passed, 1 warning in 89.08s (0:01:29)
+
+Application command:
+CG_SIMULATOR_ROOT=<temporary-clean-pinned-checkout> MUJOCO_GL=egl \
+  PYTHONPATH=src:projects/corl2026_cg/src .venv/bin/python -m pytest \
+  -c projects/corl2026_cg/pyproject.toml projects/corl2026_cg/tests -q --strict-markers
+Simulator revision: c7e06a0784853d74db57ebf78d7a66fa40c2df99
+Includes all six simulator-marked tests (four static, two reactive).
+Exit status: 0
+
+........................................................................ [ 24%]
+........................................................................ [ 48%]
+........................................................................ [ 72%]
+........................................................................ [ 96%]
+..........                                                               [100%]
+298 passed in 16.27s

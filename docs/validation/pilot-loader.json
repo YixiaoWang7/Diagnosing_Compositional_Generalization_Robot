@@ -1,0 +1,90 @@
+{
+  "features": {
+    "features": [
+      {
+        "key": "actions",
+        "shape": [
+          7
+        ],
+        "source": "hdf5",
+        "paths": [
+          "actions"
+        ],
+        "cameras": [],
+        "dtype": "float32",
+        "normalization": "none",
+        "history": 0,
+        "future": 15
+      },
+      {
+        "key": "state",
+        "shape": [
+          9
+        ],
+        "source": "hdf5",
+        "paths": [
+          "obs/robot0_eef_pos",
+          "obs/robot0_eef_quat",
+          "obs/robot0_gripper_qpos"
+        ],
+        "cameras": [],
+        "dtype": "float32",
+        "normalization": "none",
+        "history": 0,
+        "future": 0
+      },
+      {
+        "key": "images",
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "source": "video",
+        "paths": [],
+        "cameras": [
+          "agentview",
+          "robot0_eye_in_hand"
+        ],
+        "dtype": "uint8",
+        "normalization": "none",
+        "history": 0,
+        "future": 0
+      }
+    ]
+  },
+  "dataset": {
+    "root": "/mnt/ssd/yixiao/cg/l4/single_stage_5demo",
+    "video": {
+      "decoder": "torchcodec",
+      "max_handles": 8,
+      "threads": 1
+    },
+    "sampling": {
+      "strategy": "global_pass",
+      "k_passes": 1,
+      "seed": 42,
+      "window_shards": 2,
+      "block_size": 32,
+      "prefetch_window": true,
+      "prefetch_block": true
+    },
+    "selection": {
+      "include_tasks": [],
+      "exclude_tasks": [],
+      "val_fraction": 0.01,
+      "split_seed": 0,
+      "subset_seed": 0,
+      "max_demos": 80,
+      "max_demos_per_task": null
+    }
+  },
+  "loader": {
+    "batch_size": 16,
+    "num_workers": 2,
+    "prefetch_factor": 2,
+    "persistent_workers": true,
+    "pin_memory": true,
+    "multiprocessing_context": "spawn"
+  }
+}

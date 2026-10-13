@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/YixiaoWang7/robot_envs",
+  "revision": "c7e06a0784853d74db57ebf78d7a66fa40c2df99",
+  "package_path": "CG/robosuite",
+  "environments": ["CG_L4", "CG_L5"],
+  "policy_import": "robopolicy.load_policy"
+}

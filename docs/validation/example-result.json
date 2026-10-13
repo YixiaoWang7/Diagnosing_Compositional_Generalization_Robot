@@ -1,0 +1,10 @@
+{
+  "training_updates": 200,
+  "resume_checkpoint_update": 100,
+  "prediction_shape": [
+    2,
+    4,
+    1
+  ],
+  "status": "passed"
+}

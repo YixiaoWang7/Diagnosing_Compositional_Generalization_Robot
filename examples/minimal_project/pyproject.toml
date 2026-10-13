@@ -1,0 +1,12 @@
+[project]
+name = "robopolicy-example"
+version = "0.1.0"
+requires-python = ">=3.10,<3.11"
+dependencies = ["robopolicy[dataset,logging]>=0.2.0a1"]
+[project.scripts]
+robopolicy-example = "robopolicy_example:main"
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+[tool.setuptools.packages.find]
+where = ["src"]

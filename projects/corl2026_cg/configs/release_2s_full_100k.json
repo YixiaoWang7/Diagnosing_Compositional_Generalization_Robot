@@ -1,0 +1,278 @@
+{
+  "version": 1,
+  "name": "release_2s_full_100k",
+  "family": "l4_2s",
+  "instruction": "full",
+  "conditioning": "static",
+  "sets": [
+    "full"
+  ],
+  "eval_set": "full",
+  "seeds": [
+    11
+  ],
+  "run": {
+    "version": 1,
+    "seed": 11,
+    "features": {
+      "features": [
+        {
+          "key": "actions",
+          "shape": [
+            7
+          ],
+          "source": "hdf5",
+          "paths": [
+            "actions"
+          ],
+          "cameras": [],
+          "dtype": "float32",
+          "normalization": "minmax",
+          "history": 0,
+          "future": 15
+        },
+        {
+          "key": "state",
+          "shape": [
+            9
+          ],
+          "source": "hdf5",
+          "paths": [
+            "obs/robot0_eef_pos",
+            "obs/robot0_eef_quat",
+            "obs/robot0_gripper_qpos"
+          ],
+          "cameras": [],
+          "dtype": "float32",
+          "normalization": "minmax",
+          "history": 0,
+          "future": 0
+        },
+        {
+          "key": "images",
+          "shape": [
+            3,
+            256,
+            256
+          ],
+          "source": "video",
+          "paths": [],
+          "cameras": [
+            "agentview",
+            "robot0_eye_in_hand"
+          ],
+          "dtype": "uint8",
+          "normalization": "none",
+          "history": 0,
+          "future": 0
+        },
+        {
+          "key": "task_indices",
+          "shape": [
+            4
+          ],
+          "source": "hdf5",
+          "paths": [
+            "cg/task/object0",
+            "cg/task/container0",
+            "cg/task/object1",
+            "cg/task/container1"
+          ],
+          "cameras": [],
+          "dtype": "int64",
+          "normalization": "none",
+          "history": 0,
+          "future": 0
+        }
+      ]
+    },
+    "dataset": {
+      "root": "data/corl2026_cg/l4_2s",
+      "video": {
+        "decoder": "opencv",
+        "max_handles": 8,
+        "threads": 1
+      },
+      "sampling": {
+        "strategy": "window_major",
+        "k_passes": 8,
+        "seed": 42,
+        "window_shards": 10,
+        "block_size": 64,
+        "prefetch_window": true,
+        "prefetch_block": true
+      },
+      "selection": {
+        "include_tasks": [],
+        "exclude_tasks": [],
+        "val_fraction": 0.01,
+        "split_seed": 0,
+        "subset_seed": 0,
+        "max_demos": 3600,
+        "max_demos_per_task": null,
+        "balance_demos_across_tasks": true
+      }
+    },
+    "loader": {
+      "batch_size": 64,
+      "num_workers": 8,
+      "prefetch_factor": 4,
+      "persistent_workers": true,
+      "pin_memory": false,
+      "multiprocessing_context": "spawn"
+    },
+    "policy": {
+      "state_dim": 9,
+      "action_dim": 7,
+      "action_steps": 16,
+      "obs_steps": 1,
+      "cameras": 2,
+      "entity_dim": 0,
+      "selected_entities": 0,
+      "conditioning": {
+        "type": "indexed",
+        "vocab_sizes": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "fusion": {
+        "type": "cross",
+        "dim": 256,
+        "heads": 8,
+        "layers": 4,
+        "ff_dim": 512,
+        "dropout": 0.1,
+        "mask": "none",
+        "temporal_encoding": "none"
+      },
+      "vision": {
+        "type": "dinov2",
+        "patch_size": 14,
+        "dim": 384,
+        "depth": 12,
+        "heads": 6,
+        "image_size": 518,
+        "freeze": true,
+        "pretrained": "facebook/dinov2-small"
+      },
+      "head": {
+        "type": "transformer",
+        "dim": 512,
+        "layers": 8,
+        "heads": 8,
+        "ff_dim": 2048,
+        "time_dim": 256,
+        "dropout": 0.1,
+        "attention_dropout": 0.0,
+        "state_conditioning": "mean"
+      },
+      "algorithm": {
+        "type": "flow_matching",
+        "path_type": "linear",
+        "scheduler_type": "uniform",
+        "solver_type": "euler",
+        "num_inference_steps": 10,
+        "guidance_scale": 1.0,
+        "velocity_clamp": null,
+        "sigma_min": 0.0001,
+        "sigma_schedule": "constant",
+        "ot_reg": 0.05,
+        "time_eps": 0.0,
+        "t_max": 0.999,
+        "logit_normal_loc": 0.0,
+        "logit_normal_scale": 1.0,
+        "dense_jump_density": 2.0,
+        "beta_alpha": 1.5,
+        "beta_beta": 1.0
+      }
+    },
+    "processing": {
+      "image_size": null,
+      "crop_size": [
+        224,
+        224
+      ],
+      "random_crop": true,
+      "image_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "image_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "image_representation": "rgb"
+    },
+    "training": {
+      "device": "cuda:0",
+      "max_updates": 100000,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "amp": true,
+      "grad_clip_norm": 1.0,
+      "schedule": "cosine",
+      "warmup_updates": 1000,
+      "min_lr_ratio": 0.0001,
+      "log_every": 100,
+      "validate_every": 5000,
+      "validation_batches": 10,
+      "checkpoint_every": 10000,
+      "max_consecutive_skips": 100
+    },
+    "logging": {
+      "out_dir": "runs/corl2026_cg/template",
+      "wandb": {
+        "enabled": true,
+        "entity": "yixiao_wang",
+        "project": "corl2026_cg",
+        "name": null,
+        "group": null
+      }
+    }
+  },
+  "matrix": {},
+  "output_root": "runs/corl2026_cg/release",
+  "finetune_from": null,
+  "evaluation": {
+    "simulator_root": "repos/robot_envs",
+    "simulator_revision": "c7e06a0784853d74db57ebf78d7a66fa40c2df99",
+    "n_trials_per_task": 25,
+    "num_envs": 8,
+    "horizon": 800,
+    "n_execute": 8,
+    "seed": 0,
+    "device": "cuda:0",
+    "max_videos": 4,
+    "max_attention_videos": 0,
+    "fps": 20,
+    "entity_coordinates": "relative",
+    "reset_attempts": 5,
+    "inference": {
+      "version": 1,
+      "compile": "disabled",
+      "mode": "max-autotune",
+      "precision": "fp32",
+      "num_inference_steps": null
+    },
+    "logging": {
+      "out_dir": "runs/corl2026_cg/template/evaluation",
+      "wandb": {
+        "enabled": true,
+        "entity": "yixiao_wang",
+        "project": "corl2026_cg",
+        "name": null,
+        "group": null
+      }
+    }
+  },
+  "execution": {
+    "train_gpus": "0",
+    "eval_gpus": "0",
+    "overlap": false
+  }
+}

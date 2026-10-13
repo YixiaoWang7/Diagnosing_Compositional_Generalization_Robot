@@ -1,0 +1,126 @@
+name: Library and CG checks
+on:
+  push:
+    branches: [main, master, refactor/policy-core, corl2026_cg]
+  pull_request:
+    branches: [main, master, corl2026_cg]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cpu:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python: ['3.10', '3.11']
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '${{ matrix.python }}'
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: python -m pip install torch==2.9.1 torchvision==0.24.1 --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install -c constraints/training.txt '.[dataset,opencv,torchcodec,vision,logging,dev]' './projects/corl2026_cg[dev,video]'
+      - run: python -m pip check
+      - run: python -m ruff check . && python -m ruff format --check .
+      - run: python -m mypy
+      - run: python -m mypy --config-file projects/corl2026_cg/pyproject.toml projects/corl2026_cg/src
+      - run: python -m pytest tests -q -m 'not cuda' --strict-markers
+      - run: python -m pytest -c projects/corl2026_cg/pyproject.toml projects/corl2026_cg/tests -q -m 'not cuda and not simulator' --strict-markers
+      - run: python -m build
+      - run: python -m build projects/corl2026_cg
+      - name: Generate cross-runtime checkpoints
+        if: matrix.python == '3.11'
+        run: python -m tests.core.test_portability write /tmp/portability
+      - uses: actions/upload-artifact@v4
+        if: matrix.python == '3.11'
+        with:
+          name: torch29-checkpoints
+          path: /tmp/portability
+  eager:
+    needs: cpu
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.10', '3.11']
+        runtime:
+          - {torch: '2.7.0', vision: '0.22.0'}
+          - {torch: '2.8.0', vision: '0.23.0'}
+          - {torch: '2.9.1', vision: '0.24.1'}
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      HF_HUB_OFFLINE: '1'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '${{ matrix.python }}'
+      - run: python -m pip install torch==${{ matrix.runtime.torch }} torchvision==${{ matrix.runtime.vision }} --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install build && python -m build
+      - name: Install the wheel with the selected runtime pinned
+        env:
+          TORCH_VERSION: '${{ matrix.runtime.torch }}'
+          VISION_VERSION: '${{ matrix.runtime.vision }}'
+        run: |
+          python - <<'PY'
+          import glob, os, subprocess, sys
+          wheel = glob.glob('dist/*.whl')[0]
+          subprocess.run([sys.executable, '-m', 'pip', 'install', f'{wheel}[vision]',
+                          'torch==' + os.environ['TORCH_VERSION'],
+                          'torchvision==' + os.environ['VISION_VERSION'], 'pytest'], check=True)
+          PY
+      - run: python -m pip check
+      - uses: actions/download-artifact@v4
+        with:
+          name: torch29-checkpoints
+          path: /tmp/portability
+      - run: python -m tests.core.test_portability check /tmp/portability
+      - name: Verify installed runtime was preserved
+        run: python -c "import torch; assert torch.__version__.split('+')[0] == '${{ matrix.runtime.torch }}'"
+      - name: Reject TorchCodec in the pinned inference environment
+        if: matrix.runtime.torch == '2.7.0'
+        run: |
+          python - <<'PY'
+          import glob, subprocess, sys
+          wheel = glob.glob('dist/*.whl')[0]
+          result = subprocess.run([sys.executable, '-m', 'pip', 'install', '--dry-run',
+                                   '-c', 'constraints/inference.txt', f'{wheel}[torchcodec]'],
+                                  capture_output=True, text=True)
+          assert result.returncode != 0 and 'ResolutionImpossible' in result.stderr, result.stdout + result.stderr
+          PY
+  wheels:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [core, opencv, torchcodec]
+        python: ['3.10', '3.11']
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '${{ matrix.python }}'
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: python -m pip install build && python -m build
+      - run: python -m venv /tmp/robopolicy-wheel
+      - run: /tmp/robopolicy-wheel/bin/python -m pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
+      - name: Install only the selected wheel extras
+        env:
+          MODE: ${{ matrix.mode }}
+        run: |
+          /tmp/robopolicy-wheel/bin/python - <<'PY'
+          import glob, os, subprocess, sys
+          wheel = glob.glob('dist/*.whl')[0]
+          mode = os.environ['MODE']
+          requirement = wheel if mode == 'core' else f'{wheel}[dataset,{mode}]'
+          subprocess.run([sys.executable, '-m', 'pip', 'install', '-c', 'constraints/training.txt', requirement], check=True)
+          PY
+      - run: /tmp/robopolicy-wheel/bin/python -I scripts/policies/check_library_install.py --mode '${{ matrix.mode }}'

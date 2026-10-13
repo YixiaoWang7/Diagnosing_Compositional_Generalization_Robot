@@ -1,0 +1,44 @@
+[project]
+name = "corl2026-cg"
+version = "0.1.0"
+description = "Compositional generalization experiments using RoboPolicy"
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+dependencies = ["robopolicy[dataset,vision,logging,opencv]>=0.2.0a1"]
+
+[project.urls]
+Homepage = "https://yixiaowang7.github.io/Diagnosing_Compositional_Generalization_Robot_Page/"
+Repository = "https://github.com/YixiaoWang7/Diagnosing_Compositional_Generalization_Robot"
+Paper = "https://arxiv.org/abs/2607.29687"
+
+[project.optional-dependencies]
+video = ["imageio>=2.37", "imageio-ffmpeg>=0.6"]
+dev = ["pytest>=8,<10", "ruff>=0.12", "mypy>=1.15"]
+
+[project.scripts]
+cg = "corl2026_cg.cli:main"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["simulator: requires the configured external simulator", "cuda: requires CUDA"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src/corl2026_cg"]
+check_untyped_defs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true

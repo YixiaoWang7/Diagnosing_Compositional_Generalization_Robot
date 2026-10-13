@@ -1,0 +1,13 @@
+{
+  "status": "resolved",
+  "failed_entity": "models",
+  "project": "robopolicy-pilot",
+  "initial_sdk_error": "wandb 0.24.2 login banner attempted json.loads(None) for viewer flags",
+  "supported_workaround": "silent W&B SDK settings",
+  "server_error": "HTTP 403 PERMISSION_ERROR during upsertBucket",
+  "cause": "the SDK default entity was models, where the authenticated user could not create runs",
+  "authenticated_entity": "yixiao_wang",
+  "training_run": "https://wandb.ai/yixiao_wang/robopolicy-pilot/runs/3844cb75",
+  "evaluation_run": "https://wandb.ai/yixiao_wang/robopolicy-pilot/runs/d5491d85",
+  "api_verification": "passed"
+}

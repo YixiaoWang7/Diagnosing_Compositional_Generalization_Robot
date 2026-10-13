@@ -1,0 +1,288 @@
+{
+  "datasets": {
+    "l5": {
+      "root": "/mnt/ssd/yixiao/cg/l4/prepared/cg_l5_active_v1",
+      "demonstrations": 18900,
+      "tasks": 63
+    },
+    "l4_2s": {
+      "root": "/mnt/ssd/yixiao/cg/l4/prepared/cg_l4_infer_cont0_active_v1",
+      "demonstrations": 14400,
+      "tasks": 144
+    }
+  },
+  "recipes": [
+    {
+      "recipe": "example_l4_2s_full",
+      "set": "s0_full__s1_full",
+      "budget": 3600,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 144,
+      "missing_tasks": [],
+      "selected_train_demos": 3600,
+      "selected_val_demos": 148,
+      "selected_tasks": 144,
+      "demos_per_task_range": [
+        25,
+        25
+      ],
+      "static_label_demo_checks": 144
+    },
+    {
+      "recipe": "example_l4_2s_full",
+      "set": "s0_L_cor__s1_S",
+      "budget": 3600,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 28,
+      "missing_tasks": [],
+      "selected_train_demos": 2769,
+      "selected_val_demos": 31,
+      "selected_tasks": 28,
+      "demos_per_task_range": [
+        96,
+        100
+      ],
+      "static_label_demo_checks": 28
+    },
+    {
+      "recipe": "l4_infer_cont0_full",
+      "set": "full",
+      "budget": 3600,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 144,
+      "missing_tasks": [],
+      "selected_train_demos": 3600,
+      "selected_val_demos": 148,
+      "selected_tasks": 144,
+      "demos_per_task_range": [
+        25,
+        25
+      ],
+      "static_label_demo_checks": 144
+    },
+    {
+      "recipe": "l4_infer_cont0_orthogonal",
+      "set": "orthogonal",
+      "budget": 3600,
+      "updates": 150000,
+      "default_dataset_exists": false,
+      "training_tasks": 48,
+      "missing_tasks": [],
+      "selected_train_demos": 3600,
+      "selected_val_demos": 35,
+      "selected_tasks": 48,
+      "demos_per_task_range": [
+        75,
+        75
+      ],
+      "static_label_demo_checks": 48
+    },
+    {
+      "recipe": "l4_infer_cont0_cov9_B16",
+      "set": "obj0_cont1_cov9_B16",
+      "budget": 3600,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 48,
+      "missing_tasks": [],
+      "selected_train_demos": 3600,
+      "selected_val_demos": 53,
+      "selected_tasks": 48,
+      "demos_per_task_range": [
+        75,
+        75
+      ],
+      "static_label_demo_checks": 48
+    },
+    {
+      "recipe": "l5_demo_budgets",
+      "set": "full",
+      "budget": 64,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 64,
+      "missing_tasks": [
+        "milk_into_mug_no_handle_press_blue"
+      ]
+    },
+    {
+      "recipe": "l5_demo_budgets",
+      "set": "orthogonal",
+      "budget": 64,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 16,
+      "missing_tasks": [],
+      "selected_train_demos": 64,
+      "selected_val_demos": 47,
+      "selected_tasks": 16,
+      "demos_per_task_range": [
+        4,
+        4
+      ],
+      "static_label_demo_checks": 16
+    },
+    {
+      "recipe": "l5_demo_budgets",
+      "set": "full",
+      "budget": 128,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 64,
+      "missing_tasks": [
+        "milk_into_mug_no_handle_press_blue"
+      ]
+    },
+    {
+      "recipe": "l5_demo_budgets",
+      "set": "orthogonal",
+      "budget": 128,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 16,
+      "missing_tasks": [],
+      "selected_train_demos": 128,
+      "selected_val_demos": 47,
+      "selected_tasks": 16,
+      "demos_per_task_range": [
+        8,
+        8
+      ],
+      "static_label_demo_checks": 16
+    },
+    {
+      "recipe": "l5_demo_budgets",
+      "set": "full",
+      "budget": 256,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 64,
+      "missing_tasks": [
+        "milk_into_mug_no_handle_press_blue"
+      ]
+    },
+    {
+      "recipe": "l5_demo_budgets",
+      "set": "orthogonal",
+      "budget": 256,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 16,
+      "missing_tasks": [],
+      "selected_train_demos": 256,
+      "selected_val_demos": 47,
+      "selected_tasks": 16,
+      "demos_per_task_range": [
+        16,
+        16
+      ],
+      "static_label_demo_checks": 16
+    },
+    {
+      "recipe": "l5_demo_budgets",
+      "set": "full",
+      "budget": 512,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 64,
+      "missing_tasks": [
+        "milk_into_mug_no_handle_press_blue"
+      ]
+    },
+    {
+      "recipe": "l5_demo_budgets",
+      "set": "orthogonal",
+      "budget": 512,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 16,
+      "missing_tasks": [],
+      "selected_train_demos": 512,
+      "selected_val_demos": 47,
+      "selected_tasks": 16,
+      "demos_per_task_range": [
+        32,
+        32
+      ],
+      "static_label_demo_checks": 16
+    },
+    {
+      "recipe": "l5_demo_budgets",
+      "set": "full",
+      "budget": 1024,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 64,
+      "missing_tasks": [
+        "milk_into_mug_no_handle_press_blue"
+      ]
+    },
+    {
+      "recipe": "l5_demo_budgets",
+      "set": "orthogonal",
+      "budget": 1024,
+      "updates": 50000,
+      "default_dataset_exists": false,
+      "training_tasks": 16,
+      "missing_tasks": [],
+      "selected_train_demos": 1024,
+      "selected_val_demos": 47,
+      "selected_tasks": 16,
+      "demos_per_task_range": [
+        64,
+        64
+      ],
+      "static_label_demo_checks": 16
+    },
+    {
+      "recipe": "l5_pretrain_diag_B4",
+      "set": "diag_B4",
+      "budget": 1800,
+      "updates": 100000,
+      "default_dataset_exists": false,
+      "training_tasks": 4,
+      "missing_tasks": [],
+      "selected_train_demos": 1188,
+      "selected_val_demos": 12,
+      "selected_tasks": 4,
+      "demos_per_task_range": [
+        295,
+        298
+      ],
+      "static_label_demo_checks": 4
+    },
+    {
+      "recipe": "l5_pretrain_final_B10",
+      "set": "final_B10",
+      "budget": 1800,
+      "updates": 100000,
+      "default_dataset_exists": false,
+      "training_tasks": 10,
+      "missing_tasks": [],
+      "selected_train_demos": 1800,
+      "selected_val_demos": 35,
+      "selected_tasks": 10,
+      "demos_per_task_range": [
+        180,
+        180
+      ],
+      "static_label_demo_checks": 10
+    }
+  ],
+  "date": "2026-09-29",
+  "validation": {
+    "command": "CG_SIMULATOR_ROOT=/home/yixiao/Documents/code/robopolicy/repos/robot_envs MUJOCO_GL=egl PYTHONPATH=src:projects/corl2026_cg/src .venv/bin/python -m pytest projects/corl2026_cg/tests -q",
+    "passed": 286,
+    "skipped": 0,
+    "duration_seconds": 18.64
+  },
+  "scope": {
+    "new_training_launched": false,
+    "label_check": "One selected demonstration per training task per audited recipe; all steps checked for static instruction values, shape, and dtype. Not a fresh full-dataset active-label audit.",
+    "quality": "Existing 1000-update active iMF pilots achieved zero task successes; full-budget static flow-matching policy quality remains unverified.",
+    "local_paths": "Portable checked-in dataset roots do not exist here. Use the recorded prepared roots via explicit run.dataset.root overrides. Existing active exports contain verified static task fields."
+  }
+}

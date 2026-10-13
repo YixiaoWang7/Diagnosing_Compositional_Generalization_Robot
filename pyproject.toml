@@ -1,0 +1,57 @@
+[project]
+name = "robopolicy"
+version = "0.2.0a1"
+description = "Task-agnostic flow-matching robot policy learning"
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "numpy>=1.26,<3",
+    "pydantic>=2.12,<3",
+    "torch>=2.7,<2.10",
+    "typing-extensions>=4.12",
+]
+
+[project.urls]
+Homepage = "https://yixiaowang7.github.io/Diagnosing_Compositional_Generalization_Robot_Page/"
+Repository = "https://github.com/YixiaoWang7/Diagnosing_Compositional_Generalization_Robot"
+Paper = "https://arxiv.org/abs/2607.29687"
+
+[project.optional-dependencies]
+dataset = ["h5py>=3.11,<4"]
+vision = ["transformers>=4.56,<5", "torchvision>=0.22,<0.25"]
+opencv = ["opencv-python-headless>=4.11,<4.12"]
+torchcodec = ["torchcodec>=0.9,<0.10", "torch>=2.9,<2.10"]
+logging = ["wandb>=0.24,<0.25"]
+dev = ["pytest>=8,<10", "ruff>=0.12", "mypy>=1.15", "build>=1.2", "psutil>=7"]
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = {find = {where = ["src"], include = ["robopolicy*"]}}
+
+[tool.setuptools.package-data]
+robopolicy = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["cuda: requires a CUDA runtime", "video: requires both real video decoder extras", "vision: requires the vision extra"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+include = ["src/robopolicy/**/*.py", "tests/core/**/*.py", "scripts/policies/*library*.py", "examples/**/*.py"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src/robopolicy"]
+strict = true
+
+[[tool.mypy.overrides]]
+module = ["h5py.*", "cv2.*", "torchcodec.*", "transformers.*"]
+ignore_missing_imports = true

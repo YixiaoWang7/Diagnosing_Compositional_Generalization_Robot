@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "seed": 22,
+  "feature": {
+    "features": [
+      {
+        "key": "actions",
+        "shape": [
+          7
+        ],
+        "source_type": "hdf5",
+        "paths": [
+          "actions"
+        ],
+        "camera_names": [],
+        "history": 0,
+        "future": 15
+      },
+      {
+        "key": "state",
+        "shape": [
+          9
+        ],
+        "source_type": "hdf5",
+        "paths": [
+          "obs/robot0_eef_pos",
+          "obs/robot0_eef_quat",
+          "obs/robot0_gripper_qpos"
+        ],
+        "camera_names": [],
+        "history": 0,
+        "future": 0
+      },
+      {
+        "key": "images",
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "source_type": "video",
+        "paths": [],
+        "camera_names": [
+          "agentview",
+          "robot0_eye_in_hand"
+        ],
+        "history": 0,
+        "future": 0
+      },
+      {
+        "key": "future_images",
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "source_type": "video",
+        "paths": [],
+        "camera_names": [
+          "agentview",
+          "robot0_eye_in_hand"
+        ],
+        "history": 0,
+        "future": 32,
+        "sparse_offsets": [
+          8,
+          16,
+          24,
+          32
+        ]
+      }
+    ]
+  },
+  "dataset": {
+    "data_dir": "/mnt/ssd/yixiao/cg/l4/single_stage_5demo",
+    "task_filter": {
+      "include_task_slugs": [
+        "cross_into_bin",
+        "cross_into_mug",
+        "cross_into_plate",
+        "cross_into_mug_no_handle",
+        "cube_into_bin",
+        "cube_into_mug",
+        "cube_into_plate",
+        "cube_into_mug_no_handle",
+        "cylinder_into_bin",
+        "cylinder_into_mug",
+        "cylinder_into_plate",
+        "cylinder_into_mug_no_handle",
+        "milk_into_bin",
+        "milk_into_mug",
+        "milk_into_plate",
+        "milk_into_mug_no_handle"
+      ]
+    },
+    "demo_subset": {
+      "seed": 0,
+      "max_demos_total": 2000,
+      "max_demos_per_task": null
+    },
+    "cameras": [
+      "agentview",
+      "robot0_eye_in_hand"
+    ],
+    "split": {
+      "val_fraction": 0.01,
+      "split_seed": 0
+    },
+    "sampling": {
+      "k_passes": 8,
+      "active_window_shards": 10,
+      "locality_block_size": 64,
+      "predecode_next_block": true,
+      "frame_cache_max_entries": 12000,
+      "profile_timing": false,
+      "profile_every_samples": 500,
+      "log_stall_ms": 0
+    },
+    "loader": {
+      "batch_size": 64,
+      "num_workers": 4,
+      "prefetch_factor": 4
+    }
+  },
+  "processor": {
+    "normalization_type": "minmax",
+    "normalize_actions": true,
+    "normalize_states": true,
+    "add_task_indices": true,
+    "factor_vocabs": {
+      "object": {
+        "cross": 0,
+        "cube": 1,
+        "cylinder": 2,
+        "milk": 3
+      },
+      "container": {
+        "bin": 0,
+        "mug": 1,
+        "plate": 2,
+        "mug_no_handle": 3
+      }
+    },
+    "query_factors": [
+      {
+        "name": "container",
+        "vocab": "container"
+      }
+    ],
+    "hidden_factor_vocab": "object"
+  },
+  "model": {
+    "policy_head_type": "transformer",
+    "vision_model_size": "small",
+    "raw_image_size": 256,
+    "crop": true,
+    "crop_size": 224,
+    "crop_is_random": true,
+    "freeze_vision_backbone": true,
+    "pooled_dim": 256,
+    "fusion_type": "cross",
+    "fusion_num_layers": 4,
+    "fusion_num_heads": 8,
+    "fusion_ff_dim": 512,
+    "fusion_dropout": 0.1,
+    "fusion_mask_type": "none",
+    "camera_feature_combine": "concat",
+    "query_factors": [
+      {
+        "name": "container",
+        "num_levels": 4
+      }
+    ],
+    "transformer_context_mode": "fused_queries",
+    "transformer_d_model": 512,
+    "transformer_n_layers": 6,
+    "transformer_n_heads": 8,
+    "transformer_ff_dim": 2048,
+    "transformer_time_embed_dim": 256,
+    "transformer_dropout": 0.1,
+    "transformer_attention_dropout": 0.0,
+    "interaction_layer_enabled": true,
+    "interaction_num_latent_slots": 1,
+    "interaction_num_codes": 4,
+    "interaction_hidden_dim": 256,
+    "interaction_gumbel_tau": 1.0,
+    "interaction_gumbel_hard": true,
+    "interaction_beta_kl": 1.0,
+    "interaction_beta_probe": 0.5,
+    "interaction_beta_entropy": 0.1,
+    "interaction_posterior_source": "future_images",
+    "interaction_posterior_future_steps": 16,
+    "interaction_future_image_key": "future_images",
+    "interaction_future_image_offsets": [
+      8,
+      16,
+      24,
+      32
+    ],
+    "interaction_prior_num_query_layers": 1,
+    "interaction_posterior_num_query_layers": 2,
+    "interaction_query_num_heads": 8,
+    "interaction_query_ff_dim": 512
+  },
+  "algo": {
+    "path_type": "linear",
+    "scheduler_type": "uniform",
+    "solver_type": "euler",
+    "num_inference_steps": 10,
+    "guidance_scale": 1.0,
+    "velocity_clamp": null,
+    "sigma_min": 0.0001,
+    "sigma_schedule": "constant",
+    "ot_reg": 0.05,
+    "time_eps": 0.0,
+    "t_max": 0.999,
+    "logit_normal_loc": 0.0,
+    "logit_normal_scale": 1.0,
+    "dense_jump_density": 2.0,
+    "beta_alpha": 1.5,
+    "beta_beta": 1.0
+  },
+  "train": {
+    "device": "cuda:0",
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "amp": true,
+    "grad_clip_norm": 1.0,
+    "num_steps": 50000,
+    "num_data_warmup": 50,
+    "log_every": 500,
+    "eval_every": 5000,
+    "eval_num_batches": 10,
+    "eval_best_of_k": 4,
+    "save_every": 10000,
+    "lr_schedule": {
+      "type": "cosine",
+      "warmup_steps": 1000,
+      "min_lr_ratio": 0.0001
+    }
+  },
+  "logging": {
+    "out_dir": "/mnt/ssd/yixiao/cg/l4/ckpt/l4_1s_full_transformer_cross_masknone_seed22_1token_contonly_futimg_latent_obj",
+    "wandb": {
+      "enabled": true,
+      "project": "interaction",
+      "entity": "yixiao_wang",
+      "run_name": "l4_1s_full_transformer_cross_masknone_seed22_1token_contonly_futimg_latent_obj"
+    }
+  }
+}

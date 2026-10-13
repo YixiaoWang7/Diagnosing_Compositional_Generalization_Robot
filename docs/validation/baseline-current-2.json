@@ -1,0 +1,80 @@
+{
+  "backend": "current",
+  "batch": {
+    "host_dtype": "torch.uint8",
+    "packed_image_shape": [
+      16,
+      1,
+      2,
+      3,
+      256,
+      256
+    ],
+    "raw_image_mib": 6.0
+  },
+  "checksum": 87115,
+  "config": {
+    "active_window_shards": 2,
+    "batch_size": 16,
+    "cameras": [
+      "agentview",
+      "robot0_eye_in_hand"
+    ],
+    "decoder_cache_max_entries": null,
+    "frame_cache_max_entries": 0,
+    "k_passes": 1,
+    "locality_block_size": 32,
+    "max_demos": 80,
+    "max_ram_gib": null,
+    "measure_batches_requested": 50,
+    "measure_seconds_requested": 30.0,
+    "num_workers": 2,
+    "prefetch_factor": 2
+  },
+  "data_dir": "/mnt/ssd/yixiao/cg/l4/single_stage_5demo",
+  "gpu": {
+    "baseline_device_used_mib": 285.375,
+    "device": "cuda:1",
+    "peak_device_delta_mib": 128.0,
+    "peak_device_used_mib": 413.375,
+    "peak_torch_allocated_mib": 67.13525390625,
+    "peak_torch_reserved_mib": 86.0,
+    "scope": "uint8 transfer and DINOv2 preprocessing only; model excluded"
+  },
+  "image_color_order": "BGR",
+  "ram": {
+    "baseline_parent_pss_mib": 772.001953125,
+    "baseline_parent_rss_mib": 787.078125,
+    "memory_limit_exceeded": false,
+    "peak_tree_open_files": 8,
+    "peak_tree_processes": 3,
+    "peak_tree_pss_mib": 1272.1279296875,
+    "peak_tree_rss_mib": 2273.890625,
+    "peak_tree_threads": 146,
+    "peak_tree_uss_mib": 773.1171875
+  },
+  "startup": {
+    "first_batch_and_gpu_preprocess_s": 0.426926976069808,
+    "first_h2d_ms": 0.6700159907341003,
+    "first_preprocess_ms": 27.94550323486328
+  },
+  "throughput": {
+    "batch_ms_mean": 73.50680808830451,
+    "batch_ms_p50": 3.3171670511364937,
+    "batch_ms_p95": 301.1727632954716,
+    "cpu_core_equivalent": 10.102151387909661,
+    "cpu_percent_of_machine": 31.56922308721769,
+    "cpu_seconds": 303.96999999999997,
+    "dataloader_wait_ms_mean": 72.88055555225512,
+    "dataloader_wait_ms_p50": 2.777540124952793,
+    "dataloader_wait_ms_p95": 300.38969647139305,
+    "h2d_ms_mean": 0.3106870608253992,
+    "image_frames_per_s": 434.96712624588497,
+    "measured_batches": 409,
+    "measurement_s": 30.089630250819027,
+    "preprocess_ms_mean": 0.2089201755512023,
+    "samples": 6544,
+    "samples_per_s": 217.48356312294248,
+    "stop_reason": "duration"
+  }
+}
